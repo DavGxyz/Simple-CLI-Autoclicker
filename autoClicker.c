@@ -39,10 +39,10 @@ void sendMouseClick(){
 }
 
 int main(){
-    unsigned short clickRate;
+    float clickRate;
 
     printf("Type a number in milliseconds for the rate of clicks: ");
-    scanf("%hu", &clickRate);
+    scanf("%f", &clickRate);
     printf("The program is running. Press 'F1' to begin clicking; press 'Q' to exit at any time.\n");
 
     HANDLE hThread = CreateThread(NULL, 0, handleInput, NULL, 0, NULL);
