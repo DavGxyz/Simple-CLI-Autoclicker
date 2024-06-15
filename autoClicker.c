@@ -19,12 +19,12 @@ DWORD WINAPI handleInput(LPVOID lpParam){
             printf("Exiting the program.\n");
             exit(0); // Exit the program
         }
-        Sleep(50); // Sleep for a bit to reduce CPU usage
+        Sleep(25); // Sleep for a bit to reduce CPU usage
     }
     return 0;
 }
 
-void sendMouseClick(){
+DWORD WINAPI sendMouseClick(){
     POINT cursorPos;
     GetCursorPos(&cursorPos); // Gets cursor position
     INPUT input = {0};
@@ -41,15 +41,20 @@ void sendMouseClick(){
 int main(){
     float clickRate;
 
-    printf("Type a number in milliseconds for the rate of clicks: ");
-    scanf("%f", &clickRate);
-    printf("The program is running. Press 'F1' to begin clicking; press 'Q' to exit at any time.\n");
-
     HANDLE hThread = CreateThread(NULL, 0, handleInput, NULL, 0, NULL);
+    HANDLE hThread2 = CreateThread(NULL, 0, sendMouseClick, NULL, 0, NULL);
     if(hThread == NULL){
         fprintf(stderr, "Error creating input handling thread.\n");
         return 1;
     }
+    if(hThread2 == NULL){
+        fprintf(stderr, "Error creating input handling thread.\n");
+        return 1;
+    }
+
+    printf("Type a number in milliseconds for the rate of clicks: ");
+    scanf("%f", &clickRate);
+    printf("The program is running. Press 'F1' to begin clicking; press 'Q' to exit at any time.\n");
 
     while(1){ // Run the autoclicker until the user stops it
         if(isRunning){
@@ -60,7 +65,7 @@ int main(){
         }
     }
     // Clean up the thread (won't be reached in this infinite loop, but good practice nonentheless)
-    WaitForSingleObject(hThread, INFINITE);
-    CloseHandle(hThread);
+    WaitForSingleObject(hThread2, INFINITE); WaitForSingleObject(hThread, INFINITE);
+    CloseHandle(hThread2); CloseHandle(hThread);
     return 0;
 }
