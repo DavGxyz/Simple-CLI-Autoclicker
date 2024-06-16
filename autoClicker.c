@@ -67,7 +67,7 @@ int main(){
         printf("Type a number in milliseconds for the rate of clicks: ");
         scanf("%f", &clickRate);
         rePrompt = 0;
-        printf("Click rate updated to %.2f milliseconds.\nProgram running.\n", clickRate);
+        printf("Click rate updated to %f milliseconds.\nProgram running.\n", clickRate);
         }
         if(isRunning){
             sendMouseClick();

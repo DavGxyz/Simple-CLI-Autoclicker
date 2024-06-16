@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\AutoClicker.dir/objects.a
-C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\AutoClicker.dir/objects.a @CMakeFiles\AutoClicker.dir\objects1.rsp
-C:\msys64\ucrt64\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\AutoClicker.dir/objects.a -Wl,--no-whole-archive -o AutoClicker.exe -Wl,--out-implib,libAutoClicker.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\AutoClicker.dir\linkLibs.rsp
