@@ -73,7 +73,7 @@ int main(){
             sendMouseClick();
             Sleep(clickRate); // Wait for the user-defined click rate
         }else{
-            Sleep(175); // Sleep while not running to reduce CPU usage
+            Sleep(160); // Sleep while not running to reduce CPU usage
         }
     }
     // Clean up the thread (shouldn't be reached in this infinite loop, but good practice nonentheless)
