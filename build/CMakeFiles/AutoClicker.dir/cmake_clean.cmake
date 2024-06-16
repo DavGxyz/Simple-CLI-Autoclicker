@@ -1,4 +1,3 @@
-
 file(REMOVE_RECURSE
   "AutoClicker.exe"
   "AutoClicker.exe.manifest"

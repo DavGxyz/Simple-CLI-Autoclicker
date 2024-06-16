@@ -14,8 +14,6 @@
 # EXTERNAL cache entries
 ########################
 
-:UNINITIALIZED=======
-
 //Value Computed by CMake
 Autoclicker_BINARY_DIR:STATIC=F:/Programming/C/Autoclicker/build
 

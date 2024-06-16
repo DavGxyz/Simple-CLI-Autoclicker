@@ -2,18 +2,6 @@
 	"entries" : 
 	[
 		{
-			"name" : "",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "UNINITIALIZED",
-			"value" : "======"
-		},
-		{
 			"name" : "Autoclicker_BINARY_DIR",
 			"properties" : 
 			[

@@ -71,7 +71,7 @@ int main(){
         }
         if(isRunning){
             sendMouseClick();
-            Sleep(clickRate); // Wait for the user-defined click rate
+            Sleep(clickRate); // Wait for a user-defined click rate
         }else{
             Sleep(160); // Sleep while not running to reduce CPU usage
         }
