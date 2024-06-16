@@ -2,17 +2,24 @@
 #include <stdio.h>
 
 volatile unsigned char isRunning = 0;
+volatile unsigned char rePrompt = 0;
+volatile float clickRate;
 
 DWORD WINAPI handleInput(LPVOID lpParam){
     while(1){
         if(GetAsyncKeyState(VK_F1) & 0x8000){ // Check if the 'F1' key is pressed
             isRunning = !isRunning; // Toggle running state
 
-            if(isRunning){
+            if(isRunning && clickRate > 0.00001){
                 printf("The autoclicker has started.\n");
-            }else{
+            }else if(!isRunning && clickRate > 0.00001){
                 printf("The autoclicker has stopped.\n");
             }
+            Sleep(160); // Debounce the key press
+        }
+        if(GetAsyncKeyState(VK_F2) & 0x8000){ // Check if the 'F2' key is pressed
+            isRunning = 0;
+            rePrompt = 1; // Set the flag to prompt for rate
             Sleep(160); // Debounce the key press
         }
         if(GetAsyncKeyState('Q') & 0x8000){ // Check if the 'Q' key is pressed
@@ -39,8 +46,6 @@ DWORD WINAPI sendMouseClick(){
 }
 
 int main(){
-    float clickRate;
-
     HANDLE hThread = CreateThread(NULL, 0, handleInput, NULL, 0, NULL);
     HANDLE hThread2 = CreateThread(NULL, 0, sendMouseClick, NULL, 0, NULL);
     if(hThread == NULL){
@@ -54,9 +59,15 @@ int main(){
 
     printf("Type a number in milliseconds for the rate of clicks: ");
     scanf("%f", &clickRate);
-    printf("The program is running. Press 'F1' to begin clicking; press 'Q' to exit at any time.\n");
+    printf("The program is running. Press 'F1' to begin clicking, press 'Q' to exit, or press 'F2' to re-enter milliseconds.\n");
 
     while(1){ // Run the autoclicker until the user stops it
+        if(rePrompt && clickRate > 0.00001){
+        printf("Type a number in milliseconds for the rate of clicks: ");
+        scanf("%f", &clickRate);
+        rePrompt = 0;
+        printf("Click rate updated to %.2f milliseconds.\nProgram running.\n", clickRate);
+        }
         if(isRunning){
             sendMouseClick();
             Sleep(clickRate); // Wait for the user-defined click rate
@@ -64,7 +75,7 @@ int main(){
             Sleep(175); // Sleep while not running to reduce CPU usage
         }
     }
-    // Clean up the thread (won't be reached in this infinite loop, but good practice nonentheless)
+    // Clean up the thread (shouldn't be reached in this infinite loop, but good practice nonentheless)
     WaitForSingleObject(hThread2, INFINITE); WaitForSingleObject(hThread, INFINITE);
     CloseHandle(hThread2); CloseHandle(hThread);
     return 0;
