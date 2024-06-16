@@ -1,8 +1,13 @@
-[
 {
   "directory": "F:/Programming/C/Autoclicker/build",
   "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe   -g -o CMakeFiles\\AutoClicker.dir\\autoClicker.c.obj -c F:\\Programming\\C\\Autoclicker\\autoClicker.c",
   "file": "F:/Programming/C/Autoclicker/autoClicker.c",
   "output": "CMakeFiles/AutoClicker.dir/autoClicker.c.obj"
 }
-]
+
+{
+  "directory": "F:/Programming/C/Autoclicker/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe   -g -o CMakeFiles\\AutoClicker.dir\\autoClicker.c.obj -c F:\\Programming\\C\\Autoclicker\\autoClicker.c",
+  "file": "F:/Programming/C/Autoclicker/autoClicker.c",
+  "output": "CMakeFiles/AutoClicker.dir/autoClicker.c.obj"
+}

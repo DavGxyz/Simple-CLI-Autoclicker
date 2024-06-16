@@ -12,11 +12,7 @@
 						"string" : "3.30.0-rc1"
 					},
 					"projectIndex" : 0,
-					"source" : ".",
-					"targetIndexes" : 
-					[
-						0
-					]
+					"source" : "."
 				}
 			],
 			"name" : "Debug",
@@ -27,23 +23,10 @@
 					[
 						0
 					],
-					"name" : "Autoclicker",
-					"targetIndexes" : 
-					[
-						0
-					]
+					"name" : "Autoclicker"
 				}
 			],
-			"targets" : 
-			[
-				{
-					"directoryIndex" : 0,
-					"id" : "AutoClicker::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-AutoClicker-Debug-940db1a43bc5648c47e9.json",
-					"name" : "AutoClicker",
-					"projectIndex" : 0
-				}
-			]
+			"targets" : []
 		}
 	],
 	"kind" : "codemodel",

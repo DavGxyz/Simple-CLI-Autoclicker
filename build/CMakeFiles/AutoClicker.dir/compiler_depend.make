@@ -821,3 +821,5 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.1.0/include/xsavesintrin.h:
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.1.0/include/xsaveoptintrin.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.1.0/include/xtestintrin.h:
+# Empty compiler generated dependencies file for AutoClicker.
+# This may be replaced when dependencies are built.

@@ -108,4 +108,3 @@ CMakeFiles/AutoClicker.dir/clean:
 CMakeFiles/AutoClicker.dir/depend:
 	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" F:\Programming\C\Autoclicker F:\Programming\C\Autoclicker F:\Programming\C\Autoclicker\build F:\Programming\C\Autoclicker\build F:\Programming\C\Autoclicker\build\CMakeFiles\AutoClicker.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/AutoClicker.dir/depend
-
