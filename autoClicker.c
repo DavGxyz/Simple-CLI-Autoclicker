@@ -3,25 +3,32 @@
 
 volatile unsigned char isRunning = 0;
 volatile unsigned char rePrompt = 0;
+volatile unsigned char setDisabled = 1;
 volatile float clickRate;
 
 DWORD WINAPI handleInput(LPVOID lpParam){
     while(1){
         if(GetAsyncKeyState(VK_F1) & 0x8000){ // Check if the 'F1' key is pressed
-            isRunning = !isRunning; // Toggle running state
+            if(setDisabled == 0){
+                isRunning = !isRunning; // Toggle running state
 
-            if(isRunning && clickRate > 0.00001){
-                printf("The autoclicker has started.\n");
-            }else if(!isRunning && clickRate > 0.00001){
-                printf("The autoclicker has stopped.\n");
+                if(isRunning && clickRate > 0.00001){
+                    printf("The autoclicker has started.\n");
+                }else if(!isRunning && clickRate > 0.00001){
+                    printf("The autoclicker has stopped.\n");
+                }
+                Sleep(160); // Debounce the key press  
             }
-            Sleep(160); // Debounce the key press
         }
-        if(GetAsyncKeyState(VK_F2) & 0x8000){ // Check if the 'F2' key is pressed
-            isRunning = 0;
-            rePrompt = 1; // Set the flag to prompt for rate
-            Sleep(160); // Debounce the key press
-        }
+        if(setDisabled == 0)
+            if(GetAsyncKeyState(VK_F2) & 0x8000){ // Check if the 'F2' key is pressed
+                setDisabled = 1;
+                if(setDisabled == 1){
+                    isRunning = 0;
+                    rePrompt = 1; // Set the flag to prompt for rate
+                    Sleep(160); // Debounce the key press
+                }
+            }
         if(GetAsyncKeyState('Q') & 0x8000){ // Check if the 'Q' key is pressed
             printf("\nExiting the program.\n");
             exit(0); // Exit the program
@@ -60,14 +67,16 @@ int main(){
     printf("Type a number in milliseconds for the rate of clicks: ");
     scanf("%f", &clickRate);
     printf("The program is running. Press 'F1' to begin clicking, press 'Q' to exit, or press 'F2' to re-enter milliseconds.\n");
+    setDisabled = 0;
 
     while(1){ // Run the autoclicker until the user stops it
         if(rePrompt && clickRate > 0.00001){
-        isRunning = 0;
-        printf("Type a number in milliseconds for the rate of clicks: ");
-        scanf("%f", &clickRate);
-        rePrompt = 0;
-        printf("Click rate updated to %f milliseconds.\nProgram running.\n", clickRate);
+            isRunning = 0;
+            printf("Re-type a number in milliseconds for the rate of clicks: ");
+            scanf("%f", &clickRate);
+            rePrompt = 0;
+            setDisabled = 0;
+            printf("Click rate updated to %.2f milliseconds.\nProgram running.\n", clickRate);
         }
         if(isRunning){
             sendMouseClick();
